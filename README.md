@@ -1,4 +1,8 @@
-# RAG embedding, indexing, and retieval test platform
+# RAG embedding, indexing, and retieval test platform (ARCHIVED!)
+
+
+##  This is a good attempt, but pyserini issues suggest I should do this another way, and also try again but with vespa.ai
+
 
 A modular Python-based prototype search platform that supports multiple retrieval methods for technical and specialised learning content.
 

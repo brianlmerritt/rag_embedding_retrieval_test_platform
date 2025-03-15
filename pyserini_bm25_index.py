@@ -3,6 +3,7 @@ import json
 import tempfile
 import shutil
 from typing import List, Dict, Any
+# Update this import
 from pyserini.index.lucene import LuceneIndexReader as IndexReader
 from pyserini.index.lucene import LuceneIndexer
 import logging

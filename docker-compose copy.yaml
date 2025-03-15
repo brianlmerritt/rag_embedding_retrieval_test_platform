@@ -1,7 +1,6 @@
 services:
   # Weaviate vector database
   weaviate:
-    # This remains unchanged
     image: semitechnologies/weaviate:1.29.0
     ports:
       - "8080:8080"
@@ -31,8 +30,6 @@ services:
     volumes:
       - ./data:/app/data
       - ./indexes:/app/indexes
-      - ./indexing:/app/indexing:ro  # Mount code as read-only
-      - ./api.py:/app/api.py:ro  # Assuming you have an API entry point file
     environment:
       - WEAVIATE_HOST=weaviate
       - WEAVIATE_PORT=8080
@@ -40,7 +37,7 @@ services:
       - weaviate
     restart: on-failure
 
-  # Indexing service
+  # Indexing service - separate container for data preparation and indexing
   indexer:
     build:
       context: ./
@@ -48,8 +45,6 @@ services:
     volumes:
       - ./data:/app/data
       - ./indexes:/app/indexes
-      - ./indexing:/app/indexing:ro  # Mount code as read-only
-      - ./indexing_pipeline.py:/app/indexing_pipeline.py:ro  # Mount entry point script
     environment:
       - WEAVIATE_HOST=weaviate
       - WEAVIATE_PORT=8080
